@@ -26,6 +26,7 @@ jobs:
       - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
       - run: echo -e "\n.github\n.release-it.json\n.idea\n.npmrc\n" >> .npmignore
       - run: cp .github/.release-it.json ./
+      - run: test -f README.md && cat README.md >> ./.github/README.pre && cat ./.github/README.pre > README.md
       - run: ./node_modules/.bin/release-it --ci
         env:
           CI: true
